@@ -43,9 +43,14 @@
           <p class="my-5 text-xl font-bold white-bold">
             Friendly - Crazy - Flexible
           </p>
-          <button class="nav-button button white-bold" style="width: 150px;">
+          <a
+            href="{% url 'download_file' %}"
+            download
+            class="nav-button button white-bold"
+            style="width: 150px;"
+          >
             Download CV
-          </button>
+          </a>
         </div>
         <div class="content-image">
           <img src="../static/public/robot1.png" class="image-hero" alt="" />

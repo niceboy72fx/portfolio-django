@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import MyAward,MyEducation,MyFramework,MyExperience,MyInfor,MyProject,Skill,SkillExperience, Contact
 from django import forms
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+import os
 # Create your views here.
 
 class ContactForm(forms.ModelForm):
@@ -20,6 +23,14 @@ def contact_view(request):
     else:
         form = ContactForm()
     return render(request, 'index.html', {'form': form})
+
+def download_cv(request):
+    myinfor = get_object_or_404(MyInfor)
+    cv_path = myinfor.cv_path.path
+    with open(cv_path, 'rb') as file:
+        response = HttpResponse(file.read(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="{os.path.basename(cv_path)}"'
+        return response
 
 def home_page(request):
     my_infor = MyInfor.objects.first()  

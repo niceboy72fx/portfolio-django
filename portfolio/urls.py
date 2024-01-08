@@ -22,6 +22,7 @@ urlpatterns = [
     path("", home_views.home_page),
     path("admin", admin.site.urls ),
      path('/',home_views.contact_view, name='contact_view'),
+     path('download', home_views.download_cv, name='download_file'),
 ]
 
 admin.site.index_title = "Portfolio's Admin Page"
