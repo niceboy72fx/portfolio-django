@@ -1,0 +1,224 @@
+{% load static %} {% csrf_token %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-nav">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          x="0px"
+          y="0px"
+          width="100"
+          height="80"
+          viewBox="0 0 32 32"
+        >
+          <path
+            fill="#747A88"
+            d="M16,3C8.832,3,3,8.832,3,16s5.832,13,13,13s13-5.832,13-13S23.168,3,16,3z M19.783,5.684l-3.708,7.881l-3.73-7.928	C13.491,5.232,14.717,5,16,5C17.331,5,18.601,5.25,19.783,5.684z M10.526,6.472L14.539,15h3.072l3.979-8.457	c1.322,0.785,2.466,1.835,3.357,3.082L19.836,21.56L17.691,17h-3.232l-2.145,4.56L7.148,9.497C8.052,8.27,9.2,7.237,10.526,6.472z M5,16c0-1.542,0.322-3.01,0.898-4.343l6.268,14.64C7.988,24.736,5,20.716,5,16z M12.276,26.337l3.799-8.073l3.777,8.027	C18.651,26.742,17.356,27,16,27C14.691,27,13.441,26.758,12.276,26.337z M20.011,26.232l6.164-14.397C26.704,13.121,27,14.526,27,16	C27,20.649,24.096,24.625,20.011,26.232z"
+          ></path>
+        </svg>
+        <a
+          class="nav-button button white-bold"
+          href="#contact"
+          style="text-decoration: none;"
+          >Contact me</a
+        >
+      </div>
+    </header>
+    <div style="width: 100%;" class="temp-hero">
+      <div class="hero">
+        <div class="hero-content">
+          <h1 class="content-title white-bold">Hello, My name is</h1>
+          <h1 class="content-title white-bold">{{my_infor.name}} !</h1>
+          <p class="content-subtitle white-bold">
+            Software Engineer
+          </p>
+          <p class="my-5 text-xl font-bold white-bold">
+            Friendly - Crazy - Flexible
+          </p>
+          <button class="nav-button button white-bold" style="width: 150px;">
+            Download CV
+          </button>
+        </div>
+        <div class="content-image">
+          <img src="../static/public/robot1.png" class="image-hero" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="discover">
+      <section class="about">
+        <div class="dicover-head">
+          <h1 class="head-title text-white">About me</h1>
+        </div>
+        <div class="about-me my-28">
+          <div class="me-intro">
+            <p>
+              {{my_infor.description}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <div class="discover-head">
+        <h1 class="head-title text-white">My Experiences</h1>
+      </div>
+      <section class="timeline my-14 text-white">
+        {% for experience in experiences %}
+        <div class="timeline-toast">
+          <p style="font-size: 28px; font-weight: 800;">
+            {{ experience.date|date:"F jS, Y" }}
+          </p>
+          <div class="toast-border">
+            <div style="margin-left: 35px;">
+              <h2 style="font-size: 28px; font-weight: 600;">
+                {{ experience.company_name }}
+              </h2>
+              <p>
+                {{ experience.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+      <div class="discover-head">
+        <h1 class="head-title text-white">My projects</h1>
+      </div>
+      <section class="timeline my-14 text-white">
+        {% for project in projects %}
+        <div class="timeline-toast">
+          <p style="font-size: 28px; font-weight: 800;">
+            {{ project.date|date:"F jS, Y" }}
+          </p>
+          <div class="toast-border">
+            <div style="margin-left: 35px;">
+              <h2 style="font-size: 28px; font-weight: 600;">
+                {{ project.name }}
+              </h2>
+              <p>
+                {{ project.title }}
+              </p>
+              <p>
+                {{ project.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+      <div class="discover-head">
+        <h1 class="head-title text-white">Awards</h1>
+      </div>
+      <section class="timeline my-14 text-white">
+        {% for project in awards %}
+        <div class="timeline-toast">
+          <p style="font-size: 28px; font-weight: 800;">
+            {{ project.date|date:"F jS, Y" }}
+          </p>
+          <div class="toast-border">
+            <div style="margin-left: 35px;">
+              <h2 style="font-size: 28px; font-weight: 600;">
+                {{ project.name }}
+              </h2>
+              <p>
+                {{ project.title }}
+              </p>
+              <p>
+                {{ project.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+
+      <div class="discover-head">
+        <h1 class="head-title text-white">Education</h1>
+      </div>
+      <section class="timeline my-14 text-white">
+        {% for project in educations %}
+        <div class="timeline-toast">
+          <p style="font-size: 28px; font-weight: 800;">
+            {{ project.date|date:"F jS, Y" }}
+          </p>
+          <div class="toast-border">
+            <div style="margin-left: 35px;">
+              <h2 style="font-size: 28px; font-weight: 600;">
+                {{ project.name }}
+              </h2>
+              <p>
+                {{ project.title }}
+              </p>
+              <p>
+                {{ project.description }}
+              </p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </section>
+      <div class="discover-head" id="contact">
+        <h1 class="head-title text-white">Contact</h1>
+      </div>
+      <section class="about">
+        <div class="about-content my-3">
+          <div class="content-explain">
+            <section class="">
+              <div class="mx-04">
+                <form method="post" required action="{% url 'contact_view' %}">
+                  {% csrf_token %}
+
+                  <label for="fname">Your email</label>
+                  <input
+                    required
+                    type="text"
+                    id="fname"
+                    name="email"
+                    value="{{ form.email.value }}"
+                  />
+                  {{ form.email.errors }}
+
+                  <label for="lname">Subject</label>
+                  <input
+                    required
+                    type="text"
+                    id="lname"
+                    name="subject"
+                    value="{{ form.subject.value }}"
+                  />
+                  {{ form.subject.errors }}
+
+                  <label for="message">Your message</label>
+                  <textarea
+                    required
+                    id="message"
+                    rows="15"
+                    name="message"
+                    placeholder="Leave a message..."
+                  >
+{{ form.message.value }}</textarea
+                  >
+                  {{ form.message.errors }}
+
+                  <button class="submit white-bold" type="submit">
+                    Contact me
+                  </button>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <p class="text-white">@2024 Niceboy72fx. All rights reserved</p>
+    </footer>
+  </body>
+</html>
